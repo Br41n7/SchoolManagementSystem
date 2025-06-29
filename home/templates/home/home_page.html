@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+<<<<<<< HEAD
 {% load static %}
 
 {% block body_class %}template-homepage{% endblock %}
@@ -21,3 +22,37 @@ Delete the line below if you're just getting started and want to remove the welc
 {% comment %} include 'home/welcome_page.html' {% endcomment%}
 
 {% endblock content %}
+=======
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template{% endblock %}
+
+{% block extra_css %}
+
+
+<section class="py-5 text-center bg-light">
+  <div class="container">
+    <h1 class="display-5 fw-bold">{{ page.title }}</h1>
+    <p class="lead">{{ page.intro|richtext }}</p>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    {% for block in page.content %}
+      {% if block.block_type == 'heading' %}
+        <h2 class="mt-4">{{ block.value }}</h2>
+      {% elif block.block_type == 'paragraph' %}
+        <p>{{ block.value }}</p>
+      {% elif block.block_type == 'image' %}
+        {% image block.value fill-800x400 as img %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid mb-4">
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+
+
+{% endblock  %}
+>>>>>>> d8e5f0d (havoc)
