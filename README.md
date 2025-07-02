@@ -143,6 +143,5 @@ Need help or want to contribute?
 - Email: iyanuolalegan@gmail.com
 - GitHub: [Br41n7](https://github.com/Br41n7
 - Issues: [Open a ticket](https://github.com/Br41n7/SchoolManagementSystem/issues)
-```
 
----
+
