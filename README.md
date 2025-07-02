@@ -146,4 +146,4 @@ Need help or want to contribute?
 - Issues: [Open a ticket](https://github.com/Br41n7/SchoolManagementSystem/issues)
 ```
 
----
+
