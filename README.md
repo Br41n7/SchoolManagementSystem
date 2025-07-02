@@ -1,5 +1,5 @@
 ---
-
+```markdown
 🎓 Advanced School Management System (Django + Wagtail + Bootstrap 5)
 
 A fully-featured, modern *school management system* designed for higher institutions. Built with *Django*, *Wagtail CMS*, and *Bootstrap 5*, it offers dynamic portals for students, staff, and administrators — with support for admissions, screening, results, analytics, notifications, and more.
@@ -146,4 +146,4 @@ Need help or want to contribute?
 - Issues: [Open a ticket](https://github.com/Br41n7/SchoolManagementSystem/issues)
 ```
 
-
+---
