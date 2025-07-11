@@ -1,0 +1,25 @@
+<div class="container py-4">
+    <h4>My Registered Courses</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Title</th>
+                <th>Unit</th>
+                <th>Semester</th>
+                <th>Session</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reg in registrations %}
+            <tr>
+                <td>{{ reg.course.code }}</td>
+                <td>{{ reg.course.title }}</td>
+                <td>{{ reg.course.unit }}</td>
+                <td>{{ reg.semester }}</td>
+                <td>{{ reg.session }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

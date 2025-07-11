@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+  <h3>Screening Panel</h3>
+  <table class="table table-bordered">
+    <thead><tr>
+      <th>Name</th><th>JAMB</th><th>Course</th><th>Status</th><th>Actions</th>
+    </tr></thead>
+    <tbody>
+    {% for app in applications %}
+      <tr>
+        <td>{{ app.full_name }}</td>
+        <td>{{ app.jamb_reg_number }}</td>
+        <td>{{ app.course_applied }}</td>
+        <td>{{ app.screening_status }}</td>
+        <td><a href="{% url 'admission:screening_update' app.pk %}" class="btn btn-sm btn-primary">Update</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

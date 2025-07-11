@@ -46,12 +46,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # custom AppDirectoriesFinder
+
+    #custom apps
+    "core",
+    "admissions",
+    "blog",
+    "courses",
     "payments",
     "analytics",
-    "core",
-    "admissions"
-
+    "students",
+    "results",
 ]
 
 MIDDLEWARE = [
@@ -86,9 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "smgts.wsgi.application"
-
-
-AUTH_USER_MODEL = 'core.User'
 
 
 # Database

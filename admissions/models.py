@@ -8,20 +8,26 @@ from django.db import models
 
 class AdmissionApplication(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('screening', 'Under Screening'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected'),
+        ("pending", "Pending"),
+        ("screening", "Under Screening"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
     ]
 
     full_name = models.CharField(max_length=150)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     date_of_birth = models.DateField()
+    gender = models.CharField(max_length=10,choices=[('Male','Male'),
+                                                     ('Female','Female')])
+    jamb_reg_number=models.CharField(max_length=20,unique=True)
+    jamb_score=models.PositiveIntegerField()
+    olevel_result=models.FileField(upload_to='olevels/')
+    passport_photo=models.ImageField(upload_to='passports/')
+
     address = models.TextField()
     program = models.CharField(max_length=100)
-    status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES, default='pending')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     submitted_at = models.DateTimeField(default=timezone.now)
     is_notified = models.BooleanField(default=False)
     student_created = models.BooleanField(default=False)
@@ -36,23 +42,25 @@ class AdmissionApplication(models.Model):
                         self.status.title()}'.",
                     from_email="noreply@myschool.edu",
                     recipient_list=[self.email],
-                    fail_silently=True
+                    fail_silently=True,
                 )
                 self.is_notified = True
         super().save(*args, **kwargs)
 
     def _str_(self):
-        return f"{self.full_name} - {self.program}"
-
-    def upload_to(instance, filename):
-        return f"admissions/{instance.application.id}/{filename}"
+        return f"{self.full_name} - {self.program} - {self.jamb_reg_number}"
 
 
 class UploadedDocument(models.Model):
     application = models.ForeignKey(
-        AdmissionApplication, on_delete=models.CASCADE, related_name='documents')
+        AdmissionApplication, on_delete=models.CASCADE, related_name="documents"
+    )
     # e.g. 'Birth Certificate', 'O-Level Result'
     doc_type = models.CharField(max_length=50)
+
+    def upload_to(instance, filename):
+        return f"admissions/{instance.application.id}/{filename}"
+
     file = models.FileField(upload_to=upload_to)
 
     def _str_(self):
