@@ -1,4 +1,65 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<header id="hero" class="text-center py-5">
+  <div class="container">
+    <h1 class="display-4" data-aos="fade-down">Welcome to SmartSchool</h1>
+    <p class="lead" data-aos="fade-up">{{ page.intro|richtext }}</p>
+    <a href="{% url 'admissions:apply' %}" class="btn btn-primary mt-3" data-aos="zoom-in">Apply Now</a>
+  </div>
+</header>
+
+<div class="row mt-5">
+  {% for block in page.sections %}
+    {% if block.block_type == 'feature' %}
+      <div class="col-md-4 text-center" data-aos="fade-up">
+        <i class="bi {{ block.value.icon }} fs-1"></i>
+        <h5>{{ block.value.title }}</h5>
+        <p>{{ block.value.text }}</p>
+      </div>
+    {% elif block.block_type == 'testimonial' %}
+      <div class="col-12 my-4" data-aos="zoom-in">
+        <blockquote class="blockquote">
+          <p>“{{ block.value.quote }}”</p>
+          <footer class="blockquote-footer">{{ block.value.author }}</footer>
+        </blockquote>
+      </div>
+    {% elif block.block_type == 'image_gallery' %}
+      <div class="col-12 text-center" data-aos="fade-in">
+        <a href="{{ block.value.url }}" class="glightbox">
+          <img src="{{ block.value.url }}" class="img-fluid rounded" alt="">
+        </a>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+<section id="features" class="py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4" data-aos="fade-up">
+        <i class="bi bi-person-badge fs-1"></i>
+        <h4>Student Portal</h4>
+        <p>Access academics and documents.</p>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <i class="bi bi-hdd-stack fs-1"></i>
+        <h4>Admin Panel</h4>
+<p>Full school management tools.</p>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <i class="bi bi-journal-check fs-1"></i>
+        <h4>Admissions</h4>
+        <p>Digital, paperless admission process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+{% comment %}
+{% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template{% endblock %}
@@ -31,3 +92,4 @@
 
 
 {% endblock  %}
+{% endcomment %}

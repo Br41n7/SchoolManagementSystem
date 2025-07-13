@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import AdmissionForm, DocumentUploadForm
 
-def admission_apply(request):
+def apply(request):
     if request.method == "POST":
         form = AdmissionForm(request.POST)
         files = request.FILES.getlist("file")

@@ -1,0 +1,8 @@
+h1,
+.wagtail-admin h1 {
+    font-family: "Poppins", sans-serif !important;
+}
+
+button.button {
+    border-radius: 6px;
+}
