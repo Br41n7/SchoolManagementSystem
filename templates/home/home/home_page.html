@@ -9,7 +9,10 @@
     <a href="{% url 'admissions:apply' %}" class="btn btn-primary mt-3" data-aos="zoom-in">Apply Now</a>
   </div>
 </header>
+{% endblock %}
 
+
+{% comment %}
 <div class="row mt-5">
   {% for block in page.sections %}
     {% if block.block_type == 'feature' %}
@@ -55,10 +58,8 @@
     </div>
   </div>
 </section>
-{% endblock %}
 
 
-{% comment %}
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 

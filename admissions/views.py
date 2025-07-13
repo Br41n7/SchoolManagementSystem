@@ -19,7 +19,7 @@ def apply(request):
                     application=application, doc_type=doc_type, file=file
                 )
             messages.success(request, "Application submitted successfully.")
-            return redirect("admission_apply")
+            return redirect("apply")
     else:
         form = AdmissionForm()
     return render(request, "admissions/apply.html", {"form": form})
