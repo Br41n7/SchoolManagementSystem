@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Helvetica; font-size: 14px; }
+        .header { text-align: center; }
+        .info { margin-top: 20px; }
+    </style>
+</head>
+<body>
+  <div class="header">
+    <h2>SmartSchool Payment Receipt</h2>
+    <p>{{ payment.timestamp|date:"d M Y, H:i" }}</p>
+  </div>
+  <div class="info">
+    <p><strong>Name:</strong> {{ payment.student.get_full_name }}</p>
+    <p><strong>Purpose:</strong> {{ payment.purpose }}</p>
+    <p><strong>Amount:</strong> ₦{{ payment.amount }}</p>
+    <p><strong>Ref ID:</strong> {{ payment.ref_id }}</p>
+    <p><strong>Status:</strong> {{ payment.status|title }}</p>
+    <p><strong>Method:</strong> {{ payment.payment_method }}</p>
+  </div>
+</body>
+</html>
+

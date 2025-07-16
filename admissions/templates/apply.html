@@ -1,3 +1,24 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https:                                                                   
+    <title>Apply for Admission</title>
+</head>
+<body>
+    <div class="container py-5">
+        <h2>Apply for Admission</h2>
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% comment %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -32,3 +53,5 @@
 </body>
 
 </html>
+  
+{% endcomment %}

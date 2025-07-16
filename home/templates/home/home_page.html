@@ -12,7 +12,6 @@
 {% endblock %}
 
 
-{% comment %}
 <div class="row mt-5">
   {% for block in page.sections %}
     {% if block.block_type == 'feature' %}
@@ -59,7 +58,8 @@
   </div>
 </section>
 
-
+{% comment %}
+  
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 

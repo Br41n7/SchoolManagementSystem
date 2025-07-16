@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Receipt</title>
+    <style>
+        body { font-family: Arial; margin: 2em; }
+        .receipt { max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 2em; }
+    </style>
+</head>
+<body>
+  <div class="receipt">
+    <h2>SmartSchool Payment Receipt</h2>
+    <hr>
+    <p><strong>Student:</strong> {{ payment.student.get_full_name }}</p>
+    <p><strong>Purpose:</strong> {{ payment.purpose|title }}</p>
+    <p><strong>Amount:</strong> ₦{{ payment.amount }}</p>
+    <p><strong>Ref ID:</strong> {{ payment.ref_id }}</p>
+    <p><strong>Status:</strong> {{ payment.status|title }}</p>
+    <p><strong>Method:</strong> {{ payment.payment_method }}</p>
+    <p><strong>Date:</strong> {{ payment.timestamp|date:"d M, Y H:i" }}</p>
+    <hr>
+    <button onclick="window.print()">Print Receipt</button>
+  </div>
+</body>
+</html>

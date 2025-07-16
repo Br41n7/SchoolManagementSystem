@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import result_view
+from . import views
 
 app_name = 'results'
 
 urlpatterns = [
-    path('', result_view, name='view'),
+    path('', viewsresult_view, name='view'),
+    path('download/', views.download_results_pdf, name='download'),
 ]

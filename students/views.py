@@ -1,13 +1,16 @@
 from django.contrib.auth import get_user_model
 from students.models import Student
-from courses.models import CourseRegistration
+from courses.models import StudentCourseRegistration
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+
 def dashboard(request):
     # Fetch distinct sessions and semesters from registrations
-    sessions = CourseRegistration.objects.values_list("session", flat=True).distinct()
-    semesters = CourseRegistration.objects.values_list("semester", flat=True).distinct()
+    sessions = CourseRegistration.objects.values_list(
+        "session", flat=True).distinct()
+    semesters = CourseRegistration.objects.values_list(
+        "semester", flat=True).distinct()
     context = {
         "sessions": sorted(sessions, reverse=True),
         "semesters": sorted(semesters),
@@ -16,7 +19,8 @@ def dashboard(request):
 
 
 def calculate_cgpa(student):
-    results = CourseRegistration.objects.filter(student=student, grade__isnull=False)
+    results = CourseRegistration.objects.filter(
+        student=student, grade__isnull=False)
     total_units = sum(r.course.unit for r in results)
     total_points = sum(r.course.unit * r.point for r in results)
     return round(total_points / total_units, 2) if total_units else 0.0

@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap5",
 
-    #custom apps
+    # custom apps
     "core",
     "admissions",
     "blog",
@@ -56,6 +58,8 @@ INSTALLED_APPS = [
     "analytics",
     "students",
     "results",
+    "hostel",
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-             os.path.join(PROJECT_DIR, "templates"),
-           os.path.join(PROJECT_DIR, 'smgts/templates'),
+            os.path.join(PROJECT_DIR, "templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -92,7 +95,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "smgts.wsgi.application"
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

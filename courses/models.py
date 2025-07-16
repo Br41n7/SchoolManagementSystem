@@ -12,7 +12,7 @@ class Course(models.Model):
         return f"{self.code} - {self.title}"
 
 
-class CourseRegistration(models.Model):
+class StudentCourseRegistration(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     semester = models.CharField(max_length=10)
