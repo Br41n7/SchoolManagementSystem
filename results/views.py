@@ -19,7 +19,7 @@ def view_results(request):
         'results': results,
         'student': student,
     }
-    return render(request, 'results/view_results.html', context)
+    return render(request, 'results_view.html', context)
 
 
 @login_required
@@ -28,11 +28,10 @@ def download_results_pdf(request):
     results = CourseResult.objects.filter(
         student=student).select_related('course')
 
-    template = get_template('results/pdf_template.html')
+    template = get_template('pdf_template.html')
     html = template.render({'results': results, 'student': student})
     pdf = weasyprint.HTML(string=html).write_pdf()
 
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="{
-        student.username}_results.pdf"'
+    response['Content-Disposition'] = f'attachment; filename="{student.username}_results.pdf"'
     return response

@@ -7,10 +7,9 @@ def landing_page(request):
     testimonials = Testimonial.objects.all()
     clients = Client.objects.all()
 
-
-context = {
-    'features': features,
-    'testimonials': testimonials,
-    'clients': clients,
-}
-return render(request, 'home/home_page.html', context)
+    context = {
+        'features': features,
+        'testimonials': testimonials,
+        'clients': clients,
+    }
+    return render(request, 'home/home_page.html', context)

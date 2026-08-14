@@ -9,14 +9,18 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 urlpatterns = [
- path("django-admin/", admin.site.urls),
+    path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    path('admissions/', include('admissions.urls',namespace="admissions")),
-    path('analytics/', include('analytics.urls')),
-    path('courses/', include('courses.urls')),
-    path('students/', include('students.urls')),
+    path("admissions/", include("admissions.urls", namespace="admissions")),
+    path("analytics/", include("analytics.urls")),
+    path("courses/", include("courses.urls")),
+    path("students/", include("students.urls")),
+    path("results/", include("results.urls", namespace="results")),
+    path("payments/", include("payments.urls", namespace="payments")),
+    path("hostel/", include("hostel.urls", namespace="hostel")),
+    path("core/", include("core.urls")),
 ]
 
 
