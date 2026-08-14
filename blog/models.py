@@ -5,6 +5,7 @@ from django.utils import timezone
 
 User = get_user_model()
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=120, unique=True, blank=True)
@@ -15,7 +16,7 @@ class Category(models.Model):
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
@@ -32,9 +33,9 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
 
@@ -46,6 +47,5 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     approved = models.BooleanField(default=False)
 
-    def _str_(self):
+    def __str__(self):
         return f"Comment by {self.author_name} on {self.post.title}"
-
