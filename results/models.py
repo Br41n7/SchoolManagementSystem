@@ -30,7 +30,7 @@ class CourseResult(models.Model):
                 break
         super().save(*args, **kwargs)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.student} - {self.course.code}: {self.grade}"
 
 
@@ -42,5 +42,5 @@ class CGPA(models.Model):
     cgpa = models.FloatField()
     grade_class = models.CharField(max_length=30)
 
-    def _str_(self):
-        return f"{self.student} - CGPA: {se.cgpa}"
+    def __str__(self):
+        return f"{self.student} - CGPA: {self.cgpa}"

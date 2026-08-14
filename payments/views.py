@@ -4,6 +4,9 @@ from .utils import generate_ref
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.template.loader import get_template
+import weasyprint
 
 
 def make_payment(request):
@@ -39,4 +42,16 @@ def verify(request):
 
 def payment_receipt(request, ref_id):
     payment = get_object_or_404(Payment, ref_id=ref_id, student=request.user)
-    return render(request, 'payments/receipt.html', {'payment': payment})
+    return render(request, 'receipt.html', {'payment': payment})
+
+
+@login_required
+def download_receipt(request, ref_id):
+    payment = get_object_or_404(Payment, ref_id=ref_id, student=request.user)
+    template = get_template('receipt_pdf.html')
+    html = template.render({'payment': payment})
+    pdf = weasyprint.HTML(string=html).write_pdf()
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="receipt_{ref_id}.pdf"'
+    return response
