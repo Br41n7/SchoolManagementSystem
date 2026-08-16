@@ -14,9 +14,9 @@
         <p><strong>Program:</strong> {{ student.program }}</p>
         <p><strong>Level:</strong> {{ student.level }}</p>
 
-        <a href="{% url 'course_register' %}" class="btn btn-primary mt-3">Register Courses</a>
+        <a href="{% url 'register_course' %}" class="btn btn-primary mt-3">Register Courses</a>
     </div>
-        <form method="get" action="{% url 'download_result' %}" class="mb-4">
+        <form method="get" action="{% url 'results:download' %}" class="mb-4">
     <div class="mb-3">
       <label for="session" class="form-label">Session:</label>
       <select name="session" id="session" class="form-select" required>
@@ -45,7 +45,7 @@
 </div>
 
 {% for doc in user.documents.all %}
-  <p>{{ doc.title }} - <a href="{% url 'download_student_document' doc.id %}">Download PDF</a></p>
+  <p>{{ doc.title }} - <a href="{% url 'core:download_student_document' doc.id %}">Download PDF</a></p>
 {% empty %}
   <p>No documents available.</p>
 {% endfor %}
