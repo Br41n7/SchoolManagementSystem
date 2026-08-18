@@ -78,7 +78,7 @@ def screening_dashboard(request):
             )
         except Exception:
             messages.error(request, "Failed to update application.")
-            return HttpResponseRedirect(reverse("screening_dashboard"))
+            return HttpResponseRedirect(reverse("admissions:screening_dashboard"))
 
     return render(
         request, "screening_dashboard.html", {

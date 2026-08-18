@@ -15,6 +15,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("admissions/", include("admissions.urls", namespace="admissions")),
     path("analytics/", include("analytics.urls")),
+    path("blog/", include("blog.urls", namespace="blog")),
     path("courses/", include("courses.urls")),
     path("students/", include("students.urls")),
     path("results/", include("results.urls", namespace="results")),
