@@ -43,8 +43,7 @@ def apply(request):
             return redirect('admissions:pay_fee')
 
     if request.method == "POST":
-        form = AdmissionForm(request.POST)
-        files = request.FILES.getlist("file")
+        form = AdmissionForm(request.POST, request.FILES)
 
         if form.is_valid():
             application = form.save()
