@@ -2,95 +2,70 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-<header id="hero" class="text-center py-5">
-  <div class="container">
-    <h1 class="display-4" data-aos="fade-down">Welcome to SmartSchool</h1>
-    <p class="lead" data-aos="fade-up">{{ page.intro|richtext }}</p>
-    <a href="{% url 'admissions:apply' %}" class="btn btn-primary mt-3" data-aos="zoom-in">Apply Now</a>
+<header id="hero" class="text-center py-5 bg-light rounded-3 my-4 shadow-sm">
+  <div class="container py-4">
+    <h1 class="display-4 fw-bold text-primary" data-aos="fade-down">Welcome to SmartSchool</h1>
+    <div class="lead text-muted my-3" data-aos="fade-up">{{ page.intro|richtext }}</div>
+    <a href="{% url 'admissions:apply' %}" class="btn btn-primary btn-lg px-4 mt-2 shadow" data-aos="zoom-in">Apply Now</a>
   </div>
 </header>
-{% endblock %}
 
-
-<div class="row mt-5">
-  {% for block in page.sections %}
-    {% if block.block_type == 'feature' %}
-      <div class="col-md-4 text-center" data-aos="fade-up">
-        <i class="bi {{ block.value.icon }} fs-1"></i>
-        <h5>{{ block.value.title }}</h5>
-        <p>{{ block.value.text }}</p>
-      </div>
-    {% elif block.block_type == 'testimonial' %}
-      <div class="col-12 my-4" data-aos="zoom-in">
-        <blockquote class="blockquote">
-          <p>“{{ block.value.quote }}”</p>
-          <footer class="blockquote-footer">{{ block.value.author }}</footer>
-        </blockquote>
-      </div>
-    {% elif block.block_type == 'image_gallery' %}
-      <div class="col-12 text-center" data-aos="fade-in">
-        <a href="{{ block.value.url }}" class="glightbox">
-          <img src="{{ block.value.url }}" class="img-fluid rounded" alt="">
-        </a>
-      </div>
-    {% endif %}
-  {% endfor %}
-</div>
-<section id="features" class="py-5">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-4" data-aos="fade-up">
-        <i class="bi bi-person-badge fs-1"></i>
-        <h4>Student Portal</h4>
-        <p>Access academics and documents.</p>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <i class="bi bi-hdd-stack fs-1"></i>
-        <h4>Admin Panel</h4>
-<p>Full school management tools.</p>
-      </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <i class="bi bi-journal-check fs-1"></i>
-        <h4>Admissions</h4>
-        <p>Digital, paperless admission process.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-{% comment %}
-  
-{% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template{% endblock %}
-
-{% block extra_css %}
-
-
-<section class="py-5 text-center bg-light">
-  <div class="container">
-    <h1 class="display-5 fw-bold">{{ page.title }}</h1>
-    <p class="lead">{{ page.intro|richtext }}</p>
-  </div>
-</section>
-
-<section class="py-5">
-  <div class="container">
-    {% for block in page.content %}
-      {% if block.block_type == 'heading' %}
-        <h2 class="mt-4">{{ block.value }}</h2>
-      {% elif block.block_type == 'paragraph' %}
-        <p>{{ block.value }}</p>
-      {% elif block.block_type == 'image' %}
-        {% image block.value fill-800x400 as img %}
-        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid mb-4">
+<div class="container my-5">
+  <div class="row g-4">
+    {% for block in page.sections %}
+      {% if block.block_type == 'feature' %}
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="card shadow-sm border-0 h-100 text-center p-4">
+            <div class="card-body">
+              <i class="bi {{ block.value.icon }} fs-1 text-primary mb-3"></i>
+              <h5 class="card-title fw-bold">{{ block.value.title }}</h5>
+              <p class="card-text text-secondary">{{ block.value.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% elif block.block_type == 'testimonial' %}
+        <div class="col-12 my-4" data-aos="zoom-in">
+          <div class="card bg-primary text-white p-4 shadow border-0 rounded-3">
+            <blockquote class="blockquote mb-0 text-center">
+              <p class="fs-4">“{{ block.value.quote }}”</p>
+              <footer class="blockquote-footer text-white-50 mt-2">{{ block.value.author }}</footer>
+            </blockquote>
+          </div>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
-</section>
 
-
-
-{% endblock  %}
-{% endcomment %}
+  <section id="features" class="py-5">
+    <div class="row text-center g-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card shadow-sm border-0 h-100 p-4">
+          <div class="card-body">
+            <i class="bi bi-person-badge fs-1 text-primary mb-3"></i>
+            <h4 class="fw-bold">Student Portal</h4>
+            <p class="text-secondary">Access academics, results, and documents online anytime.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card shadow-sm border-0 h-100 p-4">
+          <div class="card-body">
+            <i class="bi bi-hdd-stack fs-1 text-success mb-3"></i>
+            <h4 class="fw-bold">Admin Panel</h4>
+            <p class="text-secondary">Full school management tools with role-based access.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card shadow-sm border-0 h-100 p-4">
+          <div class="card-body">
+            <i class="bi bi-journal-check fs-1 text-info mb-3"></i>
+            <h4 class="fw-bold">Admissions</h4>
+            <p class="text-secondary">Digital, paperless application and screening process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

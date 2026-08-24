@@ -9,6 +9,7 @@ from django.template.loader import get_template
 import weasyprint
 
 
+@login_required
 def make_payment(request):
     if request.method == 'POST':
         purpose = request.POST.get('purpose')
@@ -40,6 +41,7 @@ def verify(request):
     return render(request, 'payments/verify.html', {'result': res})
 
 
+@login_required
 def payment_receipt(request, ref_id):
     payment = get_object_or_404(Payment, ref_id=ref_id, student=request.user)
     return render(request, 'receipt.html', {'payment': payment})
