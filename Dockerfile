@@ -14,7 +14,7 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000
 
-# Install system packages required by Wagtail and Django.
+# Install system packages required by Wagtail, Django, and WeasyPrint.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
     libpq-dev \
@@ -22,6 +22,11 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
+    libharfbuzz0b \
+    fontconfig \
+    libffi-dev \
  && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.

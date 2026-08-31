@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: smgts
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SETTINGS_MODULE
+        value: smgts.settings.production
